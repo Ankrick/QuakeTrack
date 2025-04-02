@@ -21,7 +21,7 @@ export default function Home(){
     useEffect(() => {
         const fetchEarthquakes = async () => {
             try {
-                const res = await axios.get('http://localhost:8000/api/earthquakes');
+                const res = await axios.get('https://quaketrack.onrender.com/api/earthquakes');
                 const myanmarEq = res.data.myanmarEarthquakes;
                 setAlertmm(myanmarEq[0])
                 setEqmm(myanmarEq)
