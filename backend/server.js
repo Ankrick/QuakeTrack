@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URL).then(() => {
 
 app.use(cors(
     {
-        origin : "http://localhost:5173",
+        origin : "https://quake-track.vercel.app/",
         credentials : true
     }
 ));
