@@ -39,8 +39,6 @@ app.get('/api/earthquakes', async (req, res) => {
             axios.get(thailandApiUrl)
         ]);
 
-        console.log('USGS Myanmar Response:', myanmarResponse.data);
-        console.log('USGS Thailand Response:', thailandResponse.data);
 
         // Check if the responses contain valid 'features' arrays
         const myanmarEarthquakes = myanmarResponse.data && Array.isArray(myanmarResponse.data.features) ? myanmarResponse.data.features : [];
