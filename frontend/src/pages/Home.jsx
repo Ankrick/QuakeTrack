@@ -49,44 +49,44 @@ export default function Home(){
     
     return (
             <div className='min-h-screen'>
-                <div className='bg-red-600 px-8 py-4 w-2/3 rounded-md mx-auto shadow-md'>
+                <div className='bg-red-600 px-8 py-4 w-full md:2/3 rounded-md mx-auto shadow-md'>
                     <div className="flex justify space-x-3">
-                        <p className='text-3xl text-white mt-0.5'><AiOutlineExclamationCircle /></p>
-                        <h1 className='text-2xl text-white font-bold'>Earthquake Alert</h1>
+                        <p className='text-xl md:text-3xl text-white mt-0.5'><AiOutlineExclamationCircle /></p>
+                        <h1 className='text-lg md:text-2xl text-white font-bold'>Earthquake Alert</h1>
                     </div>
-                    <div className="mt-5">
+                    <div className="mt-3">
                         <ul>
-                            <p className='text-white font-semibold text-sm ml-10'>Magnitude {alertmm.properties.mag} earthquake is detected in {alertmm.properties.place} at time {new Date(alertmm.properties.time).toLocaleString()}</p>
+                            <p className='text-white font-semibold text-sm md:text-base'>Magnitude {alertmm.properties.mag} earthquake is detected in {alertmm.properties.place} at time {new Date(alertmm.properties.time).toLocaleString()}</p>
                         </ul>
                     </div>
                 </div>
                 <div>
-                <div className='px-8 py-4 w-2/3 rounded-md border border-blue-200 shadow-sm mx-auto mt-4'>
+                <div className='px-6 py-4 w-full md:w-2/3 rounded-md border border-blue-200 shadow-sm mx-auto mt-4'>
                     <div className="flex justify space-x-3">
-                        <p className='text-3xl mt-0.5'><BsEnvelopeExclamation /></p>
-                        <h1 className='text-2xl font-bold'>{alertmm.properties.mag} Magnitude</h1>
+                        <p className='text-xl md:text-3xl mt-0.5'><BsEnvelopeExclamation /></p>
+                        <h1 className='text-lg md:text-2xl font-bold'>{alertmm.properties.mag} Magnitude</h1>
                     </div>
-                    <div className="mt-5">
-                        <ul>
-                            <li className='font-semibold text-sm ml-10'>Magnitude : {alertmm.properties.mag}</li>
-                            <li className='font-semibold text-sm ml-10'>Location : {alertmm.properties.place} </li>
-                            <li className='font-semibold text-sm ml-10'>Time : {new Date(alertmm.properties.time).toLocaleString()}</li>
+                    <div className="mt-3">
+                        <ul className='text-sm md:text-base'>
+                            <li className='font-semibold'>Magnitude : {alertmm.properties.mag}</li>
+                            <li className='font-semibold'>Location : {alertmm.properties.place} </li>
+                            <li className='font-semibold'>Time : {new Date(alertmm.properties.time).toLocaleString()}</li>
                         </ul>
                     </div>
                     </div>
                 </div>
-                <div className='w-2/3 mx-auto'>
+                <div className='w-full md:w-2/3 mx-auto'>
                     <div className="flex justify space-x-3 mt-4 py-2">
-                            <p className='text-2xl mt-0.5'><MdHistoryToggleOff/></p>
-                            <h1 className='text-lg font-bold'>Earthquake history</h1>
+                            <p className='text-lg md:text-2xl mt-0.5'><MdHistoryToggleOff/></p>
+                            <h1 className='text-base md:text-lg font-bold'>Earthquake history</h1>
                     </div>
                 </div>
-                <div className='w-2/3 mx-auto grid grid-cols-2 gap-4'>
+                <div className='w-full md:w-2/3 mx-auto grid grid-cols-2 gap-4'>
                     <div className='border rounded-md mt-4 shadow-sm'>
                         <ol type='1'>
-                            <div className='p-4 mt-4 font-semibold text-md'>Myanmar</div>
+                            <div className='p-4 font-semibold text-md'>Myanmar</div>
                             {eqmm.map((earthquake, index) => (
-                                <li key={index} className="mt-4 p-4 rounded-md">
+                                <li key={index} className="mt-2 p-4 rounded-b">
                                     <div className='text-sm'>
                                         <p>Magnitude : {earthquake.properties.mag}</p>
                                         <p>Location : {earthquake.properties.place}</p>
