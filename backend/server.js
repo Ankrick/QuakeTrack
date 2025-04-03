@@ -31,25 +31,29 @@ app.use(morgan('dev'));
 
 app.get('/api/earthquakes', async (req, res) => {
     try {
-        const myanmarCoordinates = { lat: 21.0, lon: 95.64, radius: 5.0 };
-        const myanmarApiUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${myanmarCoordinates.lat}&longitude=${myanmarCoordinates.lon}&maxradius=${myanmarCoordinates.radius}&limit=100&orderby=time`;
-
+        const myanmarCoordinates = [
+            { lat: 21.0, lon: 95.0, radius: 5.0 },
+            { lat: 15.509, lon: 95.637, radius: 5.0 }
+        ];
+        const myanmarApiRequests = myanmarCoordinates.map(({ lat, lon, radius }) => 
+            axios.get(`https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${lat}&longitude=${lon}&maxradius=${radius}&limit=100&orderby=time`)
+        );
         const thailandApiUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2025-04-01&minlatitude=5.5&maxlatitude=20.5&minlongitude=97.5&maxlongitude=106.5&minmagnitude=4`;
   
         const [myanmarResponse, thailandResponse] = await Promise.all([
-            axios.get(myanmarApiUrl),
-            axios.get(thailandApiUrl)
+            Promise.all(myanmarApiRequests),
+            axios.get(thailandApiUrl),
         ]);
 
 
         // Check if the responses contain valid 'features' arrays
-        const myanmarEarthquakes = myanmarResponse.data && Array.isArray(myanmarResponse.data.features) ? myanmarResponse.data.features : [];
+        const myanmarEarthquakes = flatMap(response => response.data?.features || []);
         const thailandEarthquakes = thailandResponse.data && Array.isArray(thailandResponse.data.features) ? thailandResponse.data.features : [];
 
         // Merge both arrays in json
         const combinedEarthquakes = {
             myanmarEarthquakes,
-            thailandEarthquakes
+            thailandEarthquakes,
         }
 
         if (!!combinedEarthquakes) {
