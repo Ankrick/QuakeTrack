@@ -49,7 +49,7 @@ export default function Home(){
     
     return (
             <div className='min-h-screen'>
-                <div className='bg-red-600 px-8 py-4 w-full md:2/3 rounded-md mx-auto shadow-md'>
+                <div className='bg-red-600 px-8 py-4 w-full md:w-2/3 rounded-md mx-auto shadow-md'>
                     <div className="flex justify space-x-3">
                         <p className='text-xl md:text-3xl text-white mt-0.5'><AiOutlineExclamationCircle /></p>
                         <h1 className='text-lg md:text-2xl text-white font-bold'>Earthquake Alert</h1>
