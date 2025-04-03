@@ -47,7 +47,7 @@ app.get('/api/earthquakes', async (req, res) => {
 
 
         // Check if the responses contain valid 'features' arrays
-        const myanmarEarthquakes = myanmarAndamanResponses.map(response => response.data?.features || []).flat();
+        const myanmarEarthquakes = myanmarResponse.map(response => response.data?.features || []).flat();
         const thailandEarthquakes = thailandResponse.data && Array.isArray(thailandResponse.data.features) ? thailandResponse.data.features : [];
 
         // Merge both arrays in json
