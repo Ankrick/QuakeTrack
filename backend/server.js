@@ -31,7 +31,7 @@ app.use(morgan('dev'));
 
 app.get('/api/earthquakes', async (req, res) => {
     try {
-        const myanmarCoordinates = { lat: 21.0, lon: 95.0, radius: 5.0 };
+        const myanmarCoordinates = { lat: 21.0, lon: 95.64, radius: 5.0 };
         const myanmarApiUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude=${myanmarCoordinates.lat}&longitude=${myanmarCoordinates.lon}&maxradius=${myanmarCoordinates.radius}&limit=100&orderby=time`;
 
         const thailandApiUrl = `https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2020-01-01&endtime=2025-04-01&minlatitude=5.5&maxlatitude=20.5&minlongitude=97.5&maxlongitude=106.5&minmagnitude=4`;
