@@ -23,12 +23,18 @@ export default function Home(){
             try {
                 const res = await axios.get('https://quaketrack.onrender.com/api/earthquakes');
                 const myanmarEq = res.data.myanmarEarthquakes;
-                setAlertmm(myanmarEq[0])
-                setEqmm(myanmarEq.sort((a, b) => b.properties.time - a.properties.time))
-
                 const thailandEq = res.data.thailandEarthquakes;
-                setAlertth(thailandEq[0])
-                setEqth(thailandEq.sort((a, b) => b.properties.time - a.properties.time))
+
+                const sortedMyanmarEq = myanmarEq.sort((a, b) => b.properties.time - a.properties.time);
+                const sortedThailandEq = thailandEq.sort((a, b) => b.properties.time - a.properties.time);
+
+                setEqmm(sortedMyanmarEq)
+                setEqth(sortedThailandEq)
+
+
+                setAlertmm(sortedMyanmarEq[0])
+                setAlertth(sortedThailandEq[0])
+
 
             }catch(e){
                 res.status(500).json({msg : e.message});
