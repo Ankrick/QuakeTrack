@@ -1,18 +1,20 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const axios = require('axios');
-require('dotenv').config()
+const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require('morgan')
+const mongoURL = process.env.MONGO_URL;
 
-console.log(process.env);
 dotenv.config();
 
 const app = express();
 
+console.log(process.env.port)
+console.log(process.env.MONGO_URL)
 
 
-mongoose.connect(process.env.MONGO_URL).then(() => {
+mongoose.connect(mongoURL).then(() => {
     console.log('connected')
     app.listen(process.env.PORT,() => {
         console.log('app is running on localhost:'+process.env.PORT);
